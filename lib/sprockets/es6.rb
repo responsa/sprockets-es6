@@ -4,8 +4,19 @@ require 'sprockets/es6/version'
 require 'ostruct'
 
 module Sprockets
+  module Babel; end
+  
+  module Babel
+    module Transpiler
+      class << self
+        ::Babel::Transpiler.methods.each do |method|
+          delegate method, to: ::Babel::Transpiler
+        end
+      end
+    end
+  end
+  
   class ES6
-
     class << self
 
       attr_accessor :configuration

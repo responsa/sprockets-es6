@@ -51,8 +51,8 @@ module Sprockets
 
       @cache_key = [
         self.class.name,
-        Babel::Transpiler.version,
-        Babel::Transpiler.source_version,
+        ::Babel::Transpiler.version,
+        ::Babel::Transpiler.source_version,
         VERSION,
         @options
       ].freeze
@@ -67,7 +67,7 @@ module Sprockets
     end
 
     def transform(data, opts)
-      Babel::Transpiler.transform(data, opts)
+      ::Babel::Transpiler.transform(data, opts)
     end
 
     def transformation_options(input)
@@ -89,7 +89,7 @@ module Sprockets
 
   end
 
-  append_path Babel::Transpiler.source_path
+  append_path ::Babel::Transpiler.source_path
   
   if respond_to?(:register_transformer)
     register_mime_type 'text/ecmascript-6', extensions: ['.es6'], charset: :unicode
